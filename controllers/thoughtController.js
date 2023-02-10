@@ -2,7 +2,7 @@ const { Thought, User } = require('../models');
 const { getAllUsers } = require('./userController');
 
 const thoughtController = {
-    //get thought
+    //get thoughts
     getAllThoughts(req,res) {
         Thought.find({})
         .populate({path: 'reactions', select: '-__v'})
@@ -13,7 +13,7 @@ const thoughtController = {
             res.status(500).json(error);
         });
     },
-    //get thought with ID
+    //get thought
     getThoughtById({params}, res) {
         Thought.findOne({ _id: params.id })
         .select('-__v')
