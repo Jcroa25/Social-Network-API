@@ -1,5 +1,4 @@
 # Social-Network-API
-# Tech-Blog
 
 ## Purpose
 
@@ -24,6 +23,15 @@ Install Node, MongoDB, and Insomnia
 
 npm install, then make sure mongodb is running, npm start, and open insomnia
 
+![Screenshot (377)](https://user-images.githubusercontent.com/107810359/218242801-70f034f2-8ef1-4fa5-a90b-305ececae9c7.png)
+
+![Screenshot (376)](https://user-images.githubusercontent.com/107810359/218242823-57bacffa-d939-469f-89c9-b0f37fecd4d5.png)
+
+![Screenshot (375)](https://user-images.githubusercontent.com/107810359/218242838-0b79cdeb-739c-43e3-9348-32d4ea10bc83.png)
+
+![Screenshot (374)](https://user-images.githubusercontent.com/107810359/218242856-f36f06f3-ae90-47a6-b378-ccb7e3e7b082.png)
+
+https://drive.google.com/file/d/19P4xOJvOuoZ9f2oUfDU2MqoqqJSUkLWw/view
 
 ## License
 
