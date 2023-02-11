@@ -67,34 +67,36 @@ const userController = {
     },
 
     //Add friend
-    addFriend({ params }, res) {
-        User.findOneAndUpdate({ _id: params.id }, { $push: { friends: params.friendId }}, { new: true })
-        .populate({path: 'friends', select: ('-__v')})
-        .select('-__v')
-        .then(dbUsersData => {
-            if (!dbUsersData) {
-                res.status(404).json({ message: 'No user found'});
-                return;
-            }
-        res.json(dbUsersData);
-        })
-        .catch(error => res.json(error));
-    },
+    addFriend(req, res) {
+        User.findOneAndUpdate(
+          { _id: req.params.id },
+          { $push: { friends: req.params.friendId } },
+          { runValidators: true, new: true }
+        )
+          .then((user) =>
+            !user
+              ? res.status(404).json({ message: 'No friends' })
+              : res.json(user)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
 
     //Delete Friend
-    deleteFriend({ params }, res) {
-        User.findOneAndUpdate({ _id: params.id }, { pull: { friends: params.friendId }}, { new: true })
-        .populate({path: 'friends', select: '-__v'})
-        .select('-__v')
-        .then(dbUserData => {
-            if(!dbUserData) {
-                res.status(404).json({ message: 'No user found' });
-                return;
-            }
-            res.json(dbUserData);
-        })
-        .catch(error => res.status(400).json(error));
-    }
-}
+    deleteFriend(req, res) {
+        User.findOneAndUpdate(
+          { _id: req.params.id },
+          { $pull: { friends: req.params.friendId } },
+          { runValidators: true, new: true }
+        )
+          .then((user) =>
+            !user
+              ? res
+                  .status(404)
+                  .json({ message: 'No friend found :(' })
+              : res.json(user)
+          )
+          .catch((err) => res.status(500).json(err));
+      },
+    };
 
 module.exports = userController;
