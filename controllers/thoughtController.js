@@ -30,20 +30,12 @@ const thoughtController = {
         })
     },
     //new thought
-    createThought({params, body}, res) {
+    createThought({ body }, res) {
         Thought.create(body)
-        .then(({ _id }) => {
-            return getAllUsers.findOneAndUpdate({ _id: params.userId }, { $push: { thoughts: _id }}, { new: true});
-        })
-        .then(dbThoughtsData => {
-            if(!dbThoughtsData) {
-                res.status(404).json({ message: 'No matching thought'});
-                return;
-            }
-            res.json(dbThoughtsData)
-        })
-        .catch(error => res.json(error));
+        .then(dbUsersData => res.json(dbUsersData))
+        .catch(error => res.status(400).json(error));
     },
+
 
     //update thought
     updateThought({ params, body }, res) {

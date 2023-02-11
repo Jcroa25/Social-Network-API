@@ -3,7 +3,7 @@ const moment = require('moment');
 
 const ReactionSchema = new Schema(
     {
-        reachtionId: {
+        reactionId: {
             type: Schema.Types.ObjectId,
             default: () => new Types.ObjectId()
         },
@@ -45,6 +45,7 @@ const ThoughtSchema = new Schema({
         type: String,
         required: true
     },
+    
     reactions: [ReactionSchema]
 },
 {
